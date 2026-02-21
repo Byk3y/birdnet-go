@@ -127,8 +127,7 @@ RUN chmod +x /usr/bin/startup-wrapper.sh
 # Make them world-writable so non-root users can create subdirectories
 RUN mkdir -p /config /data/clips /data/models && \
     chmod 777 /config /data /data/clips /data/models
-VOLUME /config
-VOLUME /data
+
 WORKDIR /data
 
 # Make ports available to the world outside this container
@@ -158,7 +157,7 @@ LABEL podman.rootless="true"
 LABEL podman.userns="keep-id"
 LABEL podman.network.bridge="true"
 
-# Usage information for different runtimes
+# Usage information for different rountimes
 LABEL usage.docker="docker run -d --name birdnet-go -p 8080:8080 -v ./config:/config -v ./data:/data --device /dev/snd:/dev/snd ghcr.io/tphakala/birdnet-go:latest"
 LABEL usage.podman="podman run -d --name birdnet-go -p 8080:8080 -v ./config:/config -v ./data:/data --device /dev/snd:/dev/snd ghcr.io/tphakala/birdnet-go:podman-latest"
 LABEL usage.compose.docker="Use Docker/docker-compose.yml"
